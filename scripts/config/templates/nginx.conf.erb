@@ -111,5 +111,9 @@ http {
     }
   <% end %>
 
+    location ~ /commands/.*\.rb$ {
+      root /app;
+      mruby_add_handler on;
+    }
   }
 }

@@ -10,6 +10,7 @@ For a guide, read the [Getting Started with Single Page Apps on Heroku](https://
 * gzip on by default
 * error/access logs support in `heroku logs`
 * custom [configuration](#configuration)
+* [run arbitrary commands with mruby scripts](#run-arbitrary-commands--scripts)
 
 ## Deploying
 The `static.json` file is required to use this buildpack. This file handles all the configuration described below.
@@ -245,6 +246,14 @@ when accessing `/foo`, `X-Foo` will have the value `"foo"` and `X-Bar` will not 
 ### Procfile / multiple buildpacks
 
 In case you have multiple buildpacks for the application you can ensure static rendering in `Procfile` with `web: bin/boot`.
+
+### Run arbitrary commands / scripts
+
+Add the mruby scripts to `commands/` folder. For example, when there is a script like `commands/info.rb`,
+it can be called with URL like `https://static-demo.herokuapp.com/commands/info.rb`.
+
+Check this [example application](https://github.com/YanhaoYang/heroku-buildpack-static-example)
+for details.
 
 ## Testing
 For testing we use Docker to replicate Heroku locally. You'll need to have [it setup locally](https://docs.docker.com/installation/). We're also using rspec for testing with Ruby. You'll need to have those setup and install those deps:
